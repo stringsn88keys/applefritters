@@ -27,6 +27,7 @@ try
 				delay 15
 			end if
 			if (frontApp = "RubyMine") then
+				-- need to also capture the directory which is in the first element
 				set staticTexts to value of static text of window 1 of process "RubyMine" of application "System Events"
 				set gitMe to {}
 				repeat with theText in staticTexts
