@@ -4,7 +4,7 @@ try
 	repeat
 		tell application "System Events"
 			set frontApp to name of first application process whose frontmost is true
-			
+
 			if (frontApp = "HipChat") then
 				-- set things to entire contents of group 1 of group 1 of group 1 of window 1
 				-- set things to UI elements of group 1 of group 1 of group 1 of window 1
@@ -20,12 +20,13 @@ try
 					delay 15
 				end try
 			end if
-			
+
 			if (frontApp = "Teams") then
 				set myTitle to title of window 2 of process "Microsoft Teams" of application "System Events"
 				write myTitle & ";" & (current date) & linefeed to myFile
 				delay 15
 			end if
+
 			if (frontApp = "RubyMine") then
 				-- need to also capture the directory which is in the first element
 				set staticTexts to value of static text of window 1 of process "RubyMine" of application "System Events"
@@ -38,8 +39,16 @@ try
 				write gitMe & ";" & (current date) & linefeed to myFile
 				delay 15
 			end if
+
+			if (frontApp = "Firefox") then
+				set myTitle to name of window 1 of application process "firefox" of application "System Events"
+				write myTitle & ";" & (current date) & linefeed to myFile
+        delay 15
+			end if
+
 		end tell
 	end repeat
 on error errstr number errNum
+	write "Error: " & errstr
 	close myFile
 end try
