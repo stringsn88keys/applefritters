@@ -4,6 +4,7 @@ try
 	repeat
 		tell application "System Events"
 			set frontApp to name of first application process whose frontmost is true
+			-- TODO: Detect whether an app is starting up
 			
 			if (frontApp = "HipChat") then
 				-- set things to entire contents of group 1 of group 1 of group 1 of window 1
@@ -42,19 +43,19 @@ try
 			
 			if (frontApp = "firefox") then
 				set myTitle to name of window 1 of application process "Firefox" of application "System Events"
-				write myTitle & ";" & (current date) & linefeed to myFile
+				write "Firefox: " & myTitle & ";" & (current date) & linefeed to myFile
 				delay 15
 			end if
 			
 			if (frontApp = "Google Chrome") then
 				set myTitle to name of window 1 of application process "Chrome" of application "System Events"
-				write myTitle & ";" & (current date) & linefeed to myFile
+				write "Chrome: " & myTitle & ";" & (current date) & linefeed to myFile
 				delay 15
 			end if
 			
 			if (frontApp = "iTerm2") then
 				set myTitle to name of window 1 of application process "iTerm2" of application "System Events"
-				write myTitle & ";" & (current date) & linefeed to myFile
+				write "iTerm2: " & myTitle & ";" & (current date) & linefeed to myFile
 				delay 15
 			end if
 			
